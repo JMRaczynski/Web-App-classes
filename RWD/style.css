@@ -57,6 +57,7 @@ nav a {
 #burger {
     max-width: 50px;
     max-height: 50px;
+    display: none;
 }
 main {
     padding: 15px;
