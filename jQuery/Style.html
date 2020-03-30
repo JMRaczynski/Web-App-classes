@@ -20,7 +20,7 @@
                 $('#toggle').toggleClass('zielona');
             });
             $('tr:even').addClass('zielona');
-            $('ol.a li:not(.b:has(a))').addClass('zielona');
+            $('ol.a li:not(:has(.b:has(a)))').addClass('zielona');
         });
 
     </script>
@@ -40,7 +40,7 @@ przez dodawanie/usuwanie klasy.</span></div>
 klas.</span></div>
 <ol class="a">
     <li class="b">pierwsza pozycja <a href="http://google.com">GOGLE</a></li>
-    <li class="b">druga pozycja<span>jejeje</span></li>
+    <li class="b">druga pozycja<span class="b">jejeje<a href="http://google.com">GOGLE</a></span></li>
     <li>trzecia pozycja <a href="http://google.com">GOGLE2</a></li>
 </ol>
 <ol>
