@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery</title>
+    <style>
+        .zielona{background: Pink;}
+    </style>
+    <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('button:contains(\'Zielony\')').click(function () {
+                $('#classic').addClass('zielona');
+            });
+            $('button:contains(\'mosteczek\')').click(function () {
+                $('#classic').removeClass('zielona');
+            });
+            $('button:contains(\'ugina\')').click(function () {
+                $('#toggle').toggleClass('zielona');
+            });
+            $('tr:even').addClass('zielona');
+            $('ol.a li:not(.b:has(a))').addClass('zielona');
+        });
+
+    </script>
+</head>
+<body>
+<table>
+    <tr><td>Pierwszy</td></tr>
+    <tr><td>Drugi</td></tr>
+    <tr><td>Trzeci</td></tr>
+    <tr><td>Czwarty</td></tr>
+    <tr><td>Piąty</td></tr>
+    <tr><td>Szósty</td></tr>
+</table>
+<div><button>Zielony</button><button>mosteczek</button><span id="classic">Zmiana
+przez dodawanie/usuwanie klasy.</span></div>
+<div><button>ugina się.</button><span id="toggle">Zmiana przez przełączanie
+klas.</span></div>
+<ol class="a">
+    <li class="b">pierwsza pozycja <a href="http://google.com">GOGLE</a></li>
+    <li class="b">druga pozycja<span>jejeje</span></li>
+    <li>trzecia pozycja <a href="http://google.com">GOGLE2</a></li>
+</ol>
+<ol>
+    <li>pierwsza pozycja</li>
+    <li>druga pozycja</li>
+    <li>trzecia pozycja</li>
+</ol>
+<ul>
+    <li>pierwsza pozycja</li>
+    <li>druga pozycja</li>
+    <li>trzecia pozycja</li>
+</ul>
+</body>
+</html>
