@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+    if (Session["rules"] == null)
+    {
+        Session["rules"] = new List<String>();
+    }
+    var rules = (List<String>) Session["rules"];
+    if (IsPost)
+    {
+        rules.Add(Request["rule"]);
+        Response.Redirect("Rules.cshtml");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <label>
+                Zasada <input type="text" name="rule">
+            </label>
+            <input type="submit">
+        </form>
+        <ul>
+            @foreach (var rule in rules)
+            {
+                <li>@rule</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

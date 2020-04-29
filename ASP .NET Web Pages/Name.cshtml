@@ -1,0 +1,26 @@
+﻿@{
+    Layout = null;
+    var name = Request["name"];
+    if (name == null || name.Equals("")) {
+        name = "Robert Paulson";
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <ul>
+            @for (var i = 0; i < 10; i++)
+            {
+                <li>His name is @name</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>
