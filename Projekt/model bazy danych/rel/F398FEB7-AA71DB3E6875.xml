@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" mainViewID="2ADA46B6-7D09-D029-ACF8-CFF91007729C">
-<createdBy>Mentos</createdBy>
-<createdTime>2020-05-16 14:27:48 UTC</createdTime>
-<ownerDesignName>model bazy danych</ownerDesignName>
-<shouldBeOpen>false</shouldBeOpen>
-<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
-</relationalModel>
