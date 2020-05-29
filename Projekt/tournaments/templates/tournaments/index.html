@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournaments</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}
+        <h2>Main site</h2>
+    {% endblock %}
+
+    {% block content %}
+        <form id="search-form" method="get"
+                  action="{% url 'tournaments:index' %}">
+                    <label for="id_search">Search for tournament</label>
+                    <input id="id_search" name="query"
+                                   type="text" class="form-control" placeholder="Enter tournament name..">
+
+                <input type="submit" value="Search"/>
+            </form>
+
+        {% if user.is_authenticated %}
+            <a href="add/">Nowy turniej</a><br>
+        {% endif %}
+        {% if latest_tournaments_list %}
+            <ul>
+            {% for tournament in latest_tournaments_list %}
+                <li><a href="{{ tournament.id }}/">{{ tournament.name }}</a> {{ tournament.num_participants }}/{{ tournament.max_number_of_participants }} participants<br>
+                Registration deadline: {{ tournament.registration_deadline }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No tournaments are available.</p>
+        {% endif %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="player_match1" directorySegmentName="seg_0" id="5944FFF1-AE33-9E90-1DC1-4F2543C39102">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:31:38 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<sourcePk>5DA0FA43-B4CD-3D57-C3ED-ADF3B837401A</sourcePk>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>1</sourceCardinality>
+<sourceEntity>9AA6EC4A-FD84-96B8-BEAF-D77E8EC8F94D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>E53CBC89-BCC7-036C-5F08-AF97B7C6A2A5</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

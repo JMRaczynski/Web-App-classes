@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account activated!</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+      <p>
+        Your account has been activated successfully. You may go ahead and <a href="{% url 'tournaments:login' %}">sign in</a> now.
+      </p>
+    {% endblock %}
+</body>
+</html>

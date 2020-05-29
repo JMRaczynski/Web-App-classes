@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+    {% block title %}Login{% endblock %}
+
+    {% block content %}
+      <div id ="content">
+            <form id="login-form" method="post"
+                  action="{% url 'tournaments:redirect' %}">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="id_email">Email</label></td>
+                        <td><input id="id_email" name="Email"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password"
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                {% endif %}
+
+                <input type="submit" value="Login"/>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+            <br>
+            <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+    {% endblock %}
+</body>
+</html>

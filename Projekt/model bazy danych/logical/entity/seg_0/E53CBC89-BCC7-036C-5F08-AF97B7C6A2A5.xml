@@ -1,0 +1,90 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="E53CBC89-BCC7-036C-5F08-AF97B7C6A2A5" name="Match">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:54:12 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="26347AE0-655F-050C-FEE7-D4918DAA81FF">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:54:16 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="winner_mail" id="E565948C-75CE-7C16-87A8-49F8FF6CE72D">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:58:32 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>100 CHAR,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="E9843681-21CD-7389-FA59-465E494522A5">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:11:20 UTC</createdTime>
+<generatorID>AC365073-0B42-69FE-164D-B9C4CB221ABA</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<referedAttribute>42546C31-342E-A5C1-5D0A-EAC5E81E463E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="mail" id="25AC2BC9-127C-B1C9-2914-8EC50E2863C8">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:31:38 UTC</createdTime>
+<generatorID>5944FFF1-AE33-9E90-1DC1-4F2543C39102</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<referedAttribute>3B327376-5BCE-B856-CDC8-95275D3B063F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="mail1" id="189C881C-3840-C9C1-AE01-1795CAD6C959">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:33:38 UTC</createdTime>
+<generatorID>9A8C4E29-8A7E-1C74-FC0E-795AC8E6D459</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<referedAttribute>3B327376-5BCE-B856-CDC8-95275D3B063F</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+</Entity>

@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<LogicalDesign class="oracle.dbtools.crest.model.design.logical.LogicalDesign" name="Logical" id="C16059D9-9679-55C0-D92A-89CBA0C6D2A7" mainViewID="15B1A52E-0B84-9D55-5886-23FE9A266187">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:27:48 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</LogicalDesign>

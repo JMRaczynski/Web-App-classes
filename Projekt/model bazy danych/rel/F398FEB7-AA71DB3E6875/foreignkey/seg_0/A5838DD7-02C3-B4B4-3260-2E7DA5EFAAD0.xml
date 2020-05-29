@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="A5838DD7-02C3-B4B4-3260-2E7DA5EFAAD0" containerWithKeyObject="3384E726-758A-643A-D1BF-CCE59EF46927" localFKIndex="EEE36532-EE3B-6BC9-C2B2-2524A62CB614" name="Match_User_FKv2">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:34:10 UTC</createdTime>
+<generatorID>9A8C4E29-8A7E-1C74-FC0E-795AC8E6D459</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<referredTableLongName>User</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>45724032-4A83-1A05-4C5E-052D07BF87E9</referredTableID>
+<keyObject>1A2B8788-84B0-0BDA-0DDC-0FB26CBBB502</keyObject>
+<referredKeyID>1A2B8788-84B0-0BDA-0DDC-0FB26CBBB502</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>mail</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

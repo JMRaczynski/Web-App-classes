@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Matches</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}
+        <h2>Tournaments in which you compete:</h2>
+    {% endblock %}
+
+    {% block content %}
+        {% if tournaments %}
+            <ul>
+            {% for tournament in tournaments %}
+                <li><a href="{% url 'tournaments:tournament' pk=tournament.id %}">{{ tournament.name }}</a> {{ tournament.num_participants }}/{{ tournament.max_number_of_participants }} participants<br>
+                Start date: {{ tournament.start_date }}</li>
+                <h4>Upcoming matches:</h4>
+                <ul>
+                {% for match in my_matches_list %}
+                    {% if match.tournament_id == tournament %}
+                        <li>{{ match|linebreaks }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+                <br>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>You are not participating in any tournament</p>
+        {% endif %}
+    {% endblock %}
+</body>
+</html>

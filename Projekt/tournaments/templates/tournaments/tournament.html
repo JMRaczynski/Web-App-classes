@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament</title>
+</head>
+<body>
+    {% extends "base.html" %}
+    {% load index %}
+
+    {% block title %}
+        <h2>{{tournament.name}}</h2>
+    {% endblock %}
+
+    {% block content %}
+
+        {% if user.id == tournament.host_id.id %}
+            <a href="edit/">Edit Tournament</a><br>
+            <a href="{% url 'tournaments:addsponsor' %}">Add sponsor</a><br>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'tournaments:takepart' pk=tournament.id %}">Join Tournament</a><br>
+            {% else %}
+            <a href="{% url 'tournaments:login' %}">Join Tournament</a><br>
+        {% endif %}
+      <p><strong>Sport:</strong> {{ tournament.sport }}</p>
+      <p><strong>Host email:</strong> {{ tournament.host_id.email }}</p>
+      <p><strong>Registration deadline:</strong> {{ tournament.registration_deadline }}</p>
+      <p><strong>Starting date:</strong> {{ tournament.start_date }}</p>
+        <p><strong>Registered participants:</strong> {{ numOfParticipants.first.num_participants }}</p>
+      <p><strong>Max participants:</strong> {{ tournament.max_number_of_participants }}</p>
+
+        Sponsors:<br>
+        {% load static %}
+    {% for source in imagePaths %}
+        <img src="{% static source %}" width="100" height="100" alt="sponsors_logo">
+    {% endfor %}
+        <br>Bracket:<br>
+        {% for match in matches %}
+            {{ match }} <br>
+            {% if match == upcomingMatch %}
+                 <form method="post" action="">
+                    {% csrf_token %}
+                     {{ form }}
+                 <button type="submit">Submit winner</button>
+                </form>
+            {% endif %}
+                <br>
+        {% endfor %}
+        <br>
+        Tournament localization:<br>
+    <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q={{ tournament.city }}%20{{tournament.street}}%20{{tournament.house_number}}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+
+    <script src="{% static 'googlemaps.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

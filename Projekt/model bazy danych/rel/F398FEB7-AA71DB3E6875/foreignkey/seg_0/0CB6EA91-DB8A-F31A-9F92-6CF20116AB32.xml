@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0CB6EA91-DB8A-F31A-9F92-6CF20116AB32" containerWithKeyObject="FE5C1983-BB48-23F6-CBBC-3C2C5A51AAF7" localFKIndex="ABA05FBC-2F36-C562-C064-5D6B476680BB" name="Tournament_User_FK">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<generatorID>3A2E41FD-0D77-5A75-29E0-1A2EF02BEA92</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<referredTableLongName>User</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>45724032-4A83-1A05-4C5E-052D07BF87E9</referredTableID>
+<keyObject>1A2B8788-84B0-0BDA-0DDC-0FB26CBBB502</keyObject>
+<referredKeyID>1A2B8788-84B0-0BDA-0DDC-0FB26CBBB502</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>mail</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

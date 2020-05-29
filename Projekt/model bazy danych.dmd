@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="model bazy danych" id="0AD6AF6D-752D-B0B7-D980-93BF43B32A70" version="3.5">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:27:48 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>0AD6AF6D-752D-B0B7-D980-93BF43B32A70</designId>
+</OSDM_Design>

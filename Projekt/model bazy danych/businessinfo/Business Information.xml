@@ -1,0 +1,7 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<BusinessInfoDesign class="oracle.dbtools.crest.model.businessinfo.BusinessInfoDesign" name="Business Information" id="08D2F084-7F02-B205-A2C0-38CA10F519AC">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 14:27:48 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+</BusinessInfoDesign>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Tournament site</h1>
+        <p>Site on which you can create your and join other users' tournaments for free!</p>
+    <br>
+    <a href="{% url 'tournaments:index' %}">BACK TO MAIN SITE</a>
+        {% if not user.is_authenticated %}
+            <a href="{% url 'tournaments:login' %}">LOG IN</a>
+            <a href="{% url 'tournaments:signup' %}">REGISTER</a>
+        {% else %}
+            <a href="{% url 'tournaments:mymatches' pk=user.id %}">MY MATCHES</a>
+            <a href="{% url 'tournaments:logout' %}">LOG OUT</a><br>
+            <span>Hello {{user.first_name}} </span>
+        {% endif %}
+    </div>
+
+    <div id="title">
+        {% block title %}{% endblock %}
+    </div>
+
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

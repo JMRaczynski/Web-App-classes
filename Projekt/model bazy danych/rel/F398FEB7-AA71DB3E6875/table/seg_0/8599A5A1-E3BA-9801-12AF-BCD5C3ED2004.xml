@@ -1,0 +1,98 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8599A5A1-E3BA-9801-12AF-BCD5C3ED2004" name="participation">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="User_mail" id="2E520643-BDF8-C355-51F8-39D4886825F2">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F1801EB4-C93C-0ACE-AE57-DBD984D00074" referredColumn="861BF261-3286-651B-594B-F49F03F9592D"/>
+</associations>
+</Column>
+<Column name="Tournament_name" id="EDEFE025-12AA-1791-4BAB-8C393DA99332">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7509F216-5EAE-7560-E363-C1BD2F411F75" referredColumn="AC6D39EF-3517-8916-BC89-93448130C19F"/>
+</associations>
+</Column>
+<Column name="ranking" id="D9D0DC01-62B8-8281-9D44-F07635329335">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 16:05:36 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT011</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="licence_number" id="33E73DB3-8B10-A0F1-7E62-DC018AC7E63D">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 16:05:36 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 CHAR</dataTypeSize>
+<ownDataTypeParameters>50 CHAR,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A6DA58CF-16E1-19F4-807F-8BD5DFCD2B8A" name="participation_PK">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2E520643-BDF8-C355-51F8-39D4886825F2"/>
+<colUsage columnID="EDEFE025-12AA-1791-4BAB-8C393DA99332"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4606F23D-ED56-5FAB-AB6D-DE69350E7745" name="participation_User_FK">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<generatorID>84E59E8F-E4DE-3A50-70D2-A99FAEA331A8</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2E520643-BDF8-C355-51F8-39D4886825F2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F7211FB7-99E3-F65F-A010-DDC5BDC65219" name="participation_Tournament_FK">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<generatorID>84E59E8F-E4DE-3A50-70D2-A99FAEA331A8</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="EDEFE025-12AA-1791-4BAB-8C393DA99332"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

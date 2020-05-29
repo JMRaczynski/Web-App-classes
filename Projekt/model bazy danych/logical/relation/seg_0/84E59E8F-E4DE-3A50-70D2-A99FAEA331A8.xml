@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Relation class="oracle.dbtools.crest.model.design.logical.Relation" name="participation" directorySegmentName="seg_0" id="84E59E8F-E4DE-3A50-70D2-A99FAEA331A8">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:15:18 UTC</createdTime>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<engineerTo>
+<item key="F398FEB7-2644-A8D7-72C8-AA71DB3E6875" value="true"/>
+</engineerTo>
+<identifying>false</identifying>
+<optionalSource>true</optionalSource>
+<optionalTarget>false</optionalTarget>
+<sourceCardinality>*</sourceCardinality>
+<sourceEntity>9AA6EC4A-FD84-96B8-BEAF-D77E8EC8F94D</sourceEntity>
+<targetCardinalityString>*</targetCardinalityString>
+<targetEntity>C7838777-021B-C03F-36EE-CBA77526CEF7</targetEntity>
+<transferable>true</transferable>
+<deleteRule>NO ACTION</deleteRule>
+</Relation>

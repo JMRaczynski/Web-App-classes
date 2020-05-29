@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="B420250E-6265-0EB9-5F8C-D5A24033A4AD" containerWithKeyObject="39E5CEB2-9EAD-B3EF-446F-F039A6763628" localFKIndex="DD8AB46C-9CB0-0FCB-C741-8575A73E2E93" name="sponsorship_Sponsor_FK">
+<createdBy>Mentos</createdBy>
+<createdTime>2020-05-16 15:23:45 UTC</createdTime>
+<generatorID>AE8B6D58-69A6-7C9C-45AA-A7F529494775</generatorID>
+<ownerDesignName>model bazy danych</ownerDesignName>
+<referredTableLongName>Sponsor</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>F16C6737-90A2-BCAC-C12F-6905B505EF51</referredTableID>
+<keyObject>F0BD11F9-5A38-496A-B74F-A93BDF8CE66B</keyObject>
+<referredKeyID>F0BD11F9-5A38-496A-B74F-A93BDF8CE66B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>name</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
