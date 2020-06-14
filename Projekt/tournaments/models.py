@@ -66,7 +66,7 @@ class Tournament(models.Model):
     start_date = models.DateTimeField()
     max_number_of_participants = models.IntegerField()
     registration_deadline = models.DateTimeField()
-    country = models.CharField(max_length=50)
+    country = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50)
     street = models.CharField(max_length=50)
     house_number = models.IntegerField()
@@ -80,6 +80,7 @@ class Tournament(models.Model):
             CheckConstraint(
                 check=Q(registration_deadline__gt=Now()), name='check_registration_deadline',
             ),
+            CheckConstraint(check=Q(max_number_of_participants__gt=1), name='at least 2 participants'),
         ]
 
     def __str__(self):
@@ -106,6 +107,8 @@ class Match(models.Model):
     number = models.IntegerField()
 
     def __str__(self):
+        if self.winner_id == -1:
+            return "Phase: " + self.getPhaseName() + "\nMatch wasn't played because there wasn't enough participants registered."
         return "Phase: " + self.getPhaseName() +\
                    "\nLatest possible match date: " + str(self.date.strftime("%Y-%m-%d %H:%M:%S")) + "\nWinner: " + self.getWinnerName()
 
@@ -122,7 +125,7 @@ class Match(models.Model):
     def getWinnerName(self):
         if self.winner_id is None:
             return "TBD"
-        elif self.winner_id == self.player1_id.id:
+        elif self.player1_id.id is not None and self.winner_id == self.player1_id.id:
             toReturn = self.player1_id.first_name + " " + self.player1_id.last_name
             if self.player2_id is None:
                 toReturn += " (no opponent)"

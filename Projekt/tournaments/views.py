@@ -23,9 +23,6 @@ from .models import *
 from .forms import TournamentForm, SponsorForm, SignUpForm, JoinForm, PostMatchWinnerForm
 from math import log2, ceil, floor
 
-import os
-
-
 
 def bracketLayer(bracket):
     out = []
@@ -54,7 +51,7 @@ def generateBracket(tournament):
     matches = [None] * (number_of_matches + 1)
     for i in range(number_of_matches, 2 ** floor(log2(number_of_matches)) - 1, -1):
         matches[i] = Match(number=i, tournament_phase=number_of_stages, tournament_id=tournament,
-                           date=tournament.start_date + timezone.timedelta(hours=3 * (number_of_matches - i)))
+                           date=tournament.start_date + timezone.timedelta(hours=3 * (number_of_matches - i + 1)))
         if len(participation_list) > seeding[index]:
             matches[i].player1_id = participation_list[seeding[index]].user_id
         else:
@@ -67,31 +64,37 @@ def generateBracket(tournament):
         index += 1
 
         if matches[i].player1_id is None and matches[i].player2_id is None:
-            matches[i].winner_id = None
+            matches[i].winner_id = -1
         elif matches[i].player1_id is None and matches[i].player2_id is not None:
             matches[i].winner_id = matches[i].player2_id.id
         elif matches[i].player1_id is not None and matches[i].player2_id is None:
             matches[i].winner_id = matches[i].player1_id.id
+        else:
+            matches[i].winner_id = None
 
     for i in range(number_of_matches // 2, 0, -1):
         matches[i] = Match(number=i, tournament_phase=ceil(log2(i + 1)), tournament_id=tournament,
-                           date=tournament.start_date + timezone.timedelta(hours=3 * (number_of_matches - i)))
+                           date=tournament.start_date + timezone.timedelta(hours=3 * (number_of_matches - i + 1)))
         childMatch1 = matches[i * 2 + 1]
         childMatch2 = matches[i * 2]
+        willPlayer1Arrive = True
+        willPlayer2Arrive = True
+        if childMatch1.winner_id == -1:
+            willPlayer1Arrive = False
+        if childMatch2.winner_id == -1:
+            willPlayer2Arrive = False
         matches[i].player1_id = MyUser.objects.filter(id=childMatch1.winner_id).first()
         matches[i].player2_id = MyUser.objects.filter(id=childMatch2.winner_id).first()
 
-        if matches[i].player1_id is None and matches[i].player2_id is None:
-            matches[i].winner_id = None
-        elif matches[i].player1_id is None and matches[i].player2_id is not None:
+        if matches[i].player1_id is None and matches[i].player2_id is None: # NONE == TBD; -1 == NOT PLAYED
+            if (not willPlayer1Arrive) and (not willPlayer2Arrive):
+                matches[i].winner_id = -1
+            else:
+                matches[i].winner_id = None
+        elif not willPlayer1Arrive:
             matches[i].winner_id = matches[i].player2_id.id
-        elif matches[i].player1_id is not None and matches[i].player2_id is None:
+        elif not willPlayer2Arrive:
             matches[i].winner_id = matches[i].player1_id.id
-
-    for i in range(1, len(matches) // 2):
-        if (matches[i * 2].player1_id is not None and matches[i * 2].player2_id is not None) or \
-                (matches[i * 2 + 1].player1_id is not None and matches[i * 2 + 1].player2_id is not None):
-            matches[i].winner_id = None
 
     for match in matches:
         if match is not None:
@@ -123,6 +126,7 @@ class TournamentView(FormMixin, generic.DetailView):
     form_class = PostMatchWinnerForm
     template_name = 'tournaments/tournament.html'
     success_url = '/tournaments/'
+
 
     def post(self, request, *args, **kwargs):
         self.success_url += str(self.request.session['tournament'])
@@ -162,6 +166,8 @@ class TournamentView(FormMixin, generic.DetailView):
         matchToUpdate = matches.filter(number=next_match_number).first()
         previousMatch = matches.filter(number=match_number).first()
         winner = MyUser.objects.filter(id=previousMatch.winner_id).first()
+        if matchToUpdate is None:
+            return
         if match_number == next_match_number * 2:
             matchToUpdate.player2_id = winner
         else:
@@ -169,11 +175,14 @@ class TournamentView(FormMixin, generic.DetailView):
         matchToUpdate.save()
 
 
-
     def get_context_data(self, **kwargs):
         self.request.session['tournament'] = self.get_object().id
         context = super(TournamentView, self).get_context_data(**kwargs)
         context['numOfParticipants'] = Tournament.objects.filter(id=self.get_object().id).annotate(num_participants=Count('participation'))
+        if self.get_object().registration_deadline < timezone.now():
+            context['from_past'] = True
+        else:
+            context['from_past'] = False
         paths = Sponsor.objects.filter(tournament=self.get_object()).values_list('logo')
         context['imagePaths'] = []
         for i in paths:
@@ -182,18 +191,23 @@ class TournamentView(FormMixin, generic.DetailView):
         if self.get_object().registration_deadline < timezone.now() and len(context['matches']) == 0:
             generateBracket(self.get_object())
             context['matches'] = Match.objects.filter(tournament_id=self.get_object()).order_by('-number')
-        if self.request.user.is_authenticated:
+        if self.request.user.is_authenticated and self.get_object().start_date < timezone.now():
             context['upcomingMatch'] = context['matches'].filter(Q(player1_id=self.request.user) | Q(player2_id=self.request.user)).filter(winner_id=None)\
                 .filter(~Q(player1_id=None))\
                 .filter(~Q(player2_id=None))\
                 .order_by("-date").first()
-            if self.request.method == "GET" and context['upcomingMatch'] is not None:
-                context['form'] = PostMatchWinnerForm()
-                context['form'].fields['player_winner_pick'].queryset = MyUser.objects.filter(
-                                Q(id=context['upcomingMatch'].player1_id.id) | Q(id=context['upcomingMatch'].player2_id.id))
+            if context['upcomingMatch'] is not None:
+                if self.request.user.id == context['upcomingMatch'].player1_id.id:
+                    context['userPick'] = MyUser.objects.filter(id=context['upcomingMatch'].player1_winner_pick).first()
+                if self.request.user.id == context['upcomingMatch'].player2_id.id:
+                    context['userPick'] = MyUser.objects.filter(id=context['upcomingMatch'].player2_winner_pick).first()
+                if self.request.method == "GET":
+                    context['form'] = PostMatchWinnerForm()
+                    context['form'].fields['player_winner_pick'].queryset = MyUser.objects.filter(
+                                    Q(id=context['upcomingMatch'].player1_id.id) | Q(id=context['upcomingMatch'].player2_id.id))
+                    context['form'].fields['player_winner_pick'].initial = context['userPick']
 
         return context
-
 
 
 class MatchView(generic.DetailView):
@@ -226,9 +240,15 @@ class TournamentCreate(LoginRequiredMixin, FormView):
 
     def form_valid(self, form):
         form.instance.host_id = self.request.user
-        newTournament = form.save()
-        self.request.session['tournament'] = newTournament.id
-        return super().form_valid(form)
+        is_valid = True
+        if form.instance.max_number_of_participants < 2:
+            form.add_error('max_number_of_participants', 'Tournament can be hosted only for 2 or more participants!')
+            is_valid = False
+        if is_valid:
+            newTournament = form.save()
+            self.request.session['tournament'] = newTournament.id
+            return super().form_valid(form)
+        return self.form_invalid(form)
 
 
 class TournamentUpdate(UpdateView):
@@ -269,6 +289,8 @@ class JoinTournament(LoginRequiredMixin, FormView):
         if len(registration_set) >= form.instance.tournament_id.max_number_of_participants:
             form.add_error(None, 'Tournament is already full!')
             is_valid = False
+        if timezone.now() >= form.instance.tournament_id.registration_deadline:
+            form.add_error(None, 'You can\'t register for this tournament anymore. It\'s after registration deadline.')
         if is_valid:
             form.save()
             return super().form_valid(form)
@@ -285,9 +307,11 @@ def redirect_view(request):
     password = request.POST['password']
     user = authenticate(request, username=email, email=email, password=password)
     if user is not None:
+        request.session['login_unsuccessful'] = False
         login(request, user)
         return redirect('tournaments:index')
     else:
+        request.session['login_unsuccessful'] = True
         return redirect('tournaments:login')
 
 
@@ -357,10 +381,3 @@ def logo_upload(request):
         formset = ImageFormSet(queryset=Sponsor.objects.none())
     return render(request, 'tournaments/sponsor_form.html',
                   {'formset': formset})
-
-
-
-"""def index(request):
-    latest_tournaments_list = Tournament.objects.order_by('-start_date')[:5]
-    context = {'latest_tournaments_list': latest_tournaments_list}
-    return render(request, 'tournaments/index.html', context)"""

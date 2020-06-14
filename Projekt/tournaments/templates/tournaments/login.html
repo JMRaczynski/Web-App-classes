@@ -5,6 +5,7 @@
     <title>Log in</title>
 </head>
 <body>
+    {% extends 'base.html' %}
     {% block title %}Login{% endblock %}
 
     {% block content %}
@@ -24,7 +25,7 @@
                                    type="password" class="form-control"></td>
                     </tr>
                 </table>
-                {% if form.errors %}
+                {% if request.session.login_unsuccessful %}
                     <p class=" label label-danger">
                         Your username and password didn't match.
                         Please try again.
@@ -35,7 +36,7 @@
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>
             <br>
-            <a href="{% url 'password_reset' %}">Forgot password?</a>
+          <a href="{% url 'password_reset' %}"><button>Forgot password?</button></a>
         </div>
     {% endblock %}
 </body>

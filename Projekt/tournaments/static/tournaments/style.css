@@ -1,0 +1,46 @@
+html {
+    background: #181b1f;
+    color: #b3d4fc;
+    font-family: 'Roboto', sans-serif;
+}
+
+button {
+    font-family: inherit;
+    background-color: #87a3bf;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0;
+    margin: 5px;
+    font-weight: bold;
+}
+
+input {
+    font-family: inherit;
+    background-color: #87a3bf;
+}
+
+input::placeholder {
+    color: #222222;
+}
+
+select {
+    font-family: inherit;
+    background-color: #87a3bf;
+}
+
+.button-bar {
+    padding: 10px;
+    margin: 10px;
+}
+
+a:link {
+    color: green;
+}
+
+a:visited {
+    color: green;
+}
+
+iframe {
+    margin-top: 10px;
+}

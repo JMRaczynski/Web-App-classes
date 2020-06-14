@@ -9,7 +9,7 @@
 
     {% block content %}
         <h2>Join tournament</h2>
-      <form method="post" enctype="multipart/form-data">
+      <form method="post" enctype="multipart/form-data" onsubmit="return confirm('Do you really want to take part in this tournament?');">
         {% csrf_token %}
         {% for field in form %}
           <p>
